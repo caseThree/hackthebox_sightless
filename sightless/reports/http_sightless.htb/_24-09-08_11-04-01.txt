@@ -1,0 +1,4 @@
+# Dirsearch started Sun Sep  8 11:04:56 2024 as: /usr/lib/python3/dist-packages/dirsearch/dirsearch.py -u http://sightless.htb -x 404
+
+301   178B   http://sightless.htb/images    -> REDIRECTS TO: http://sightless.htb/images/
+403   564B   http://sightless.htb/images/

@@ -1,0 +1,107 @@
+tQLite format 3@  F.--F.v���
+ �
+        G
+         �
+         �
+          ;^
+�
+X����
+    3�;�uindexusers_password_reset_idusersCREATE UNIQUE INDEX `users_password_reset_id` ON `users` (`password_reset_id`) WHERE `password_reset_id` IS NOT NULL�\�tableusersusersCREATE TABLE `users` (`id` VARCHAR(255) PRIMARY KEY, `email` VARCHAR(255) NOT NULL, `role` VARCHAR(255) NOT NULL, `name` VARCHAR(255), `passhash` VARCHAR(255), `password_reset_id` UUID, `data` JSON, `signup_at` DATETIME, `created_at` DATETIME NOT NULL, `updated_at` DATETIME NOT NULL, `disabled` TINYINT(1), UNIQUE (`email`)))▒=indexsqlite_autoindex_users_2users▒)=indexsqlite_autoindex_users_1users�
+C3�+indexconnection_accesses_user_idconnection_accessesCREATE INDEX `connection_accesses_user_id` ON `connection_accesses` (`user_id`)�O3�Cindexconnection_accesses_connection_idconnection_accessesCREATE INDEX `connection_accesses_connection_id` ON `connection_accesses` (`connection_id`)�33�Itableconnection_accessesconnection_accessesCREATE TABLE `connection_accesses` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `connection_id` VARCHAR(255) NOT NULL, `connection_name` VARCHAR(255) NOT NULL, `user_id` VARCHAR(255) NOT NULL, `user_email` VARCHAR(255) NOT NULL, `duration` INTEGER NOT NULL, `expiry_date` DATETIME NOT NULL, `created_at` DATETIME NOT NULL, `updated_at` DATETIME NOT NULL)�W##�utableconnectionsconnectionsCREATE TABLE `connections` (`id` VARCHAR(255) PRIMARY KEY, `name` VARCHAR(255) NOT NULL, `description` TEXT, `driver` VARCHAR(255) NOT NULL, `multi_statement_transaction_enabled` TINYINT(1), `idle_timeout_seconds` INTEGER, `data` TEXT NOT NULL, `created_at` DATETIME NOT NULL, `updated_at` DATETIME NOT NULL)5I#indexsqlite_autoindex_connections_1connections�>!!�Gtablequery_tagsquery_tagsCREATE TABLE `query_tags` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `query_id` VARCHAR(255) NOT NULL, `tag` VARCHAR(255) NOT NULL, UNIQUE (`query_id`, `tag`))�%
+                                                  !tablequeriesqueries  CREATE TABLE `queries` (`id` VARCHAR(255) PRIMARY KEY, `name` TEXT NOT NULL, `connection_id` VARCHAR(255), `query_text` TEXT, `chart` JSON, `created_by` VARCHAR(255) NOT NULL, `updated_by` VARCHAR(255), `created_at` DATETIME NOT NULL, `updated_at` DATETIME NOT NULL)�Y        ))�mtableservice_tokensservice_tokens
+CREATE TABLE "service_tokens" (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` VARCHAR(255), `role` VARCHAR(255), `masked_token` VARCHAR(255), `duration` INTEGER DEFAULT 0, `expiry_date` DATETIME, `created_at` DATETIME NOT NULL, `updated_at` DATETIME, CONSTRAINT `service_tokens_name_key` UNIQUE (`name`))Y)!windexquery_tags_tagquery_tagsCREATE INDEX `query_tags_tag` ON `query_tags` (`tag`)3G!indexsqlite_CREATE INDEX `queries_created_by` ON `queries` (`created_by`)-
+                                                              Andexsqlite_autoindex_queries_1queries
+                   ;
+O)indexsqlite_autoindex_service_tokens_1service_tokens
+                                                      �+I�{indexquery_acl_user_id_query_id_keyquery_acCREATE UNIQUE INDEX `query_acl_user_id_query_id_key` ON `query_acl` (`user_id`, `query_id`) WHERE `user_id` IS NOT NULL�/K�indexquery_acl_group_id_query_id_keyquery_aclCREATE UNIQUE INDEX `query_acl_group_id_query_id_key` ON `query_acl` (`group_id`, `query_id`) WHERE `group_id` IS NOT NULLe1�indexquery_acl_query_idquery_aclCREATE INDEX `query_acl_query_id` ON `query_acl` (`query_id`)P++Ytablesqlite_sequencesqlite_sequenceCREATE TABLE sqlite_sequence(name,seq)��qtablequery_aclquery_aclCREATE TABLE `query_acl` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `query_id` VARCHAR(255) NOT NULL, `user_id` VARCHAR(255), `write` TINYINT(1) NOT NULL DEFAULT 0, `created_at` DATETIME NOT NULL, `updated_at` DATETIME, `group_id` VARCHAR(255))x))�+tableschema_versionschema_versionCREATE TABLE `schema_version` (`name` VARCHAR(255) NOT NULL UNIQUE PRIMARY KEY);O)indexsqlite_autoindex_schema_version_1schema_version
+s���yS;"���s%
+             S06-00700-service-token-id-column.js$
+                                                  Q06-00200-statement-execution-id.js▒
+=06-00100-user-ldap-id.js$      Q06-00010-fix-query-history-view.jE06-00000-version-6-marker.js705-00800-auth-role.js505-00100-sessions.js$Q04-00400-query-history-to-batch.jsE04-00300-batch-statements.js I04-00200-nedb-sqlite-tables.js#O04-00129-service-tokens-schema.jsE04-00100-query-acl-schema.js
+
+h���vO6����h'S06-00700-service-token-id-column.js
+                                                 &Q06-00200-statement-execution-id.js
+    =06-00100-user-ldap-id.js
+&Q06-00010-fix-query-history-view.js     E06-00000-version-6-marker.j705-00800-auth-role.js▒505-00100-sessions.js&Q04-00400-query-history-to-batch.js E04-00300-batch-statements.js"I04-00200-nedb-sqlite-tables.js%O04-00129-service-tokens-schema��3E    connection_accessesschema.js
+
+
+
+
+
+
+
+
+
+aa�
+5-III__EVERY_CONNECTION__Every Connection__EVERYONE__Everyone2024-05-15 12:30:35.398 +00:002024-05-15 04:48:09.394 +00:002024-05-15 12:30:35.398 +00:00
+��5     __EVERY_CONNECTION__
+�:�▒�*U1UI26113beb-60eb-4a58-81eb-2318e27eb3bfjohn@sightless.htbeditor2d3499e3-16ba-4b4b-a49e-c7c5dca89f2d2024-05-15 12:29:23.725 +00:002024-05-15 12:29:27.257 +00:00�CU3�Ida9a25f7-588c-40f5-89db-58fbebab591fadmin@sightless.htbadmin$2a$10$cjbITibC.4BQQKJ8NOBUv.p0bG2n8t.RIIKRysR6pZnxquAWsLFcC2024-05-15 04:48:09.377 +00:002024-05-15 18:16:54.652 +00:00
+�����(U26113beb-60eb-4a58-81eb-2318e27eb3bf)'U  da9a25f7-588c-40f5-89db-58fbebab591f
++*)��(U2d3499e3-16ba-4b4b-a49e-c7c5dca89f2d
+|�I5
+ �
+
+�
+�
+`       �       j       �~�K��y������;�uindexusers_password_reset_idusersCREATE UNIQUE
+��=indexsqlite_autoindex_cache_1cache;�uindexusers_password_reset_idusersCREATE UNIQUE INDEX `users_password_reset_id` ON `users` (`password_reset_id`) WHERE `password_reset_id` IS NOT NULL
+��tableusersusersCREATE TABLE `users` (`id` VARCHAR(255) PRIMARY KEY, `email` VARCHAR(255) NOT�7EtablebatchesbatchesCREATE TABLE `batches` (`id` UUID PRIMARY KEY, `query_id` VARCHAR(255), `name` VARCHAR(255), `connection_id` VARCHAR(255) NOT NULL, `connection_client_id` UUID, `status` VARCHAR(255), `start_time` DATETIME, `stop_time` DATETIME, `duration_ms` INTEGER, `batch_text` TEXT NOT NULL, `selected_text` TEXT, `chart` JSON, `user_id` VARCHAR(255) NOT NULL, `created_at` DATETIME NOT NULL, `updated_at` DATETIME NOT NULL)^/�indexcache_expiry_datecacheCREATE INDEX `cache_expiry_date` ON `cache` (`expiry_date`))indexsqlite_autoindex_cache_1cache7▒�Mtablecachecache▒CREATE TABLE `cache` (`id` VARCHAR(255) PRIMARY KEY, `name` VARCHAR(255) NOT NULL, `data` JSON, `expiry_date` DATETIME NOT NULL, `created_at` DATETIME NOT NULL)�
+C3�+indexconnection_accesses_user_idconnection_accessesCREATE INDEX `connection_accesses_user_id` ON `connection_accesses` (`user_id`)�O3�Cindexconnection_accesses_connection_idconnection_accessesCREATE INDEX `connection_accesses_connection_id` ON `connection_accesses` (`connection_id`)�33�Itableconnection_accessesconnection_accessesCREATE TABLE `connection_accesses` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `connection_id` VARCHAR(255) NOT NULL, `connection_name` VARCHAR(255) NOT NULL, `user_id` VARCHAR(255) NOT NULL, `user_email` VARCHAR(255) NOT NULL, `duration` INTEGER NOT NULL, `expiry_date` DATETIME NOT NULL, `created_at` DATETIME NOT NULL, `updated_at` DATETIME NOT NULL)5I#indexsqlite_autoindex_connections_1connections�W##�utableconnectionsconnectionsCREATE TABLE `connections` (`id` VARCHAR(255) PRIMARY KEY, `name` VARCHAR(255) NOT NULL, `description` TEXT, `driver` VARCHAR(255) NOT NULL, `multi_statement_transaction_enabled` TINYINT(1), `idle_timeout_seconds` INTEGER, `data` TEXT NOT NULL, `created_at` DATETIME NOT NULL, `updated_at` DATETIME NOT NULL)Y)!windexquery_tags_tagquery_tagsCREATE INDEX `query_tags_tag` ON `query_tags` (`tag`)3G!indexsqlite_autoindex_query_tags_1query_tags�>!!�Gtablequery_tagsquery_tagsCREATE TABLE `query_tags` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `query_id` VARCHAR(255) NOT NULL, `tag` VARCHAR(255) NOT NULL, UNIQUE (CREATE INDEX `queries_created_by` ON `queries` (`created_by`)-
+                                                              Andexsqlite_autoindex_queries_1queries
+                   �%
+                     !tablequeriesqueries       CREATE TABLE `queries` (`id` VARCHAR(255) PRIMARY KEY, `name` TEXT NOT NULL, `connection_id` VARCHAR(255), `query_text` TEXT, `chart` JSON, `created_by` VARCHAR(255) NOT NULL, `updated_by` VARCHAR(255), `created_at` DATETIME NOT NULL, `updated_at` DATETIME NOT NULL)�+I�{indexquery_acl_user_id_query_id_keyquery_acCREATE UNIQUE INDEX `query_acl_user_id_query_id_key` ON `query_acl` (`user_id`, `query_id`) WHERE `user_id` IS NOT NULL�/K�indexquery_acl_group_id_query_id_keyquery_aclCREATE UNIQUE INDEX `query_acl_group_id_query_id_key` ON `query_acl` (`group_id`, `query_id`) WHERE `group_id` IS NOT NULLe1�indexquery_acl_query_idquery_aclCREATE INDEX `query_acl_query_id` ON `query_acl` (`query_id`)P++Ytablesqlite_sequencesqlite_sequenceCREATE TABLE sqlite_sequence(name,seq)��qtablequery_aclquery_aclCREATE TABLE `query_acl` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `query_id` VARCHAR(255) NOT NULL, `user_id` VARCHAR(255), `write` TINYINT(1) NOT NULL DEFAULT 0, `created_at` DATETIME NOT NULL, `updated_at` DATETIME, `group_id` VARCHAR(255));O)indexsqlite_autoindex_schema_version_1schema_versionx))�+tableschema_versionschema_versionCREATE TABLE `schema_version`�f`name` VARCHAR(255) NOT NULL UNIQUE PRIMARY KEY)
+  �
+   w
+    �
+     �
+      y
+       
+b
+bf�����;6O)indexsqlite_autoindex_service_tokens_1service_tokens
+�1;!�kindexstatements_execution_idstatements+CREATE UNIQUE INDEX `statements_execution_id` ON `statements` (`execution_id`) WHERE `execution_id` IS NOT NULL�S!!!�qtablestatementsstatements#CREATE TABLE `statements` (`id` UUID PRIMARY KEY, `batch_id` UUID NOT NULL, `sequence` INTEGER NOT NULL, `statement_text` TEXT NOT NULL, `status` VARCHAR(255) NOT NULL, `start_time` DATETIME, `stop_time` DATETIME, `duration_ms` INTEGER, `columns` JSON, `row_count` INTEGER, `results_path` VARCHAR(255), `incomplete` TINYINT(1), `error` JSON, `created_at` DATETIME NOT NULL, `updated_at` DATETIME NOT NULL, `execution_id` VARCHAR(255))u0'�9indexusers_ldap_idusers*CREATE UNIQUE INDEX `users_ldap_id` ON `users` (`ldap_id`) WHERE `ldap_id` IS NOT NULLm/#�-indexusers_emailusers)CREATE UNIQUE INDEX `users_email` ON `users` (`email`) WHERE `email` IS NOT NULL).=indexsqlite_autoindex_users_2users▒)-=indexsqlite_autoindex_users_1users�,�gtableusersusersCREATE TABLE `users` (`id` VARCHAR(255) UNIQUE PRIMARY KEY, `email` VARCHAR(255), `role` VARCHAR(255) NOT NULL, `name` VARCHAR(255), `passhash` VARCHAR(255), `password_reset_id` UUID UNIQUE, `data` JSON, `signup_at` DATETIME, `created_at` DATETIME NOT NULL, `updated_at` DATETIME NOT NULL, `disabled` TINYINT(1), `sync_auth_role` TINYINT(1), `ldap_id` VARCHAR(255))�4(-�viewvw_query_historyvw_query_historyCREATE VIEW vw_query_history AS
+      SELECT
+        b.id,
+        b.query_id,
+        b.name AS query_name,
+        b.connection_id,
+        c.name AS connection_name,
+        b.status,
+        b.start_time,
+        b.stop_time,
+        b.duration_ms,
+        CASE
+          WHEN b.selected_text = '' OR b.selected_text IS NULL THEN b.batch_text
+          ELSE b.selected_text
+          END AS query_text,
+        b.user_id,
+        u.email AS user_email,
+        ss.row_count,
+        ss.incomplete
+      FROM
+        batches b
+        LEFT JOIN users u ON b.user_id = u.id
+        LEFT JOIN connections c ON b.connection_id = c.id
+        LEFT JOIN (
+          SELECT
+            batch_id,
+            SUM(row_count) AS row_count,
+            MAX(CAST(incomplete AS INTEGER)) AS incomplete
+          FROM
+            statements
+          GROUP BY
+            batch_id
+        ) ss ON b.id = ss.batch_id/'Cindexsqlite_autoindex_sessions_1sessions(�#&�tablesessionssessions'CREATE TABLE `sessions` (`sid` VARCHAR(36) PRIMARY KEY, `expires` DATETIME, `data` TEXT, `created_at` DATETIME, `updated_at` DATETIME)o$7!�indexstatements_created_atstatements&CREATE INDEX `statements_created_at` ON `statements` (`created_at`)i#3!�
+                            indexstatements_batch_idstatements%CREATE INDEX `statements_batch_id` ON `statements` (`batch_id`)3"G!indexsqlite_autoindex_statements_1statements$\ -ndexbatches_query_idbatches"CREATE INDEX `batches_query_id` ON `batches` (`query_id`)Y+indexbatches_user_idbatches!CREATE INDEX `batches_user_id` ON `batches` (`user_id`)-Andexsqlite_autoindex_batches_1batches �aEtablebatchesbatchesCREATE TABLE `batches` (`id` UUID PRIMARY KEY, `query_id` VARCHAR(2�#5))�tableservice_tokensservice_tokens
+CREATE TABLE `service_tokens` (`id` VARCHAR(255) PRIMARY KEY, `name` VARCHAR(255) UNIQUE, `role` VARCHAR(255), `masked_token` VARCHAR(255), `duration` INTEGER DEFAULT '0', `expiry_date` DATETIME, `created_at` DATETIME NOT NULL, `updated_at` DATETIME);7O)indexsqlite_autoindex_service_tokens_2service_tokens.;77�tableservice_tokens_backupservice_tokens_backupCREATE TABLE `service_tokens_backup` (`id` VARCHAR(255) PRIMARY KEY, `name` VARCHAR(255) UNIQUE, `role` VARCHAR(255), `masked_token` VARCHAR(255), `duration` INTEGER DEFAULT '0', `expiry_date` DATETIME, `created_at` DATETIME NOT NULL, `updated_at` DATETIME)
+
+
+
+
+
+
+
+
+����1john@sightless.htb3        admin@sightless.htb
+
+
+,

